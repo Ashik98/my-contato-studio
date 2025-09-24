@@ -4,6 +4,7 @@ import user from './user'
 import page from './page'
 import settings from './settings'
 import imageAsset from './imageAsset'
+import documentUpload from './documentUpload' 
 
 import hero from './slices/hero'
 import textBlock from './slices/textBlock'
@@ -18,7 +19,7 @@ import newsletterSignup from './slices/newsletterSignup'
 
 export const schemaTypes = [
    //documents 
-    blog, video, user, page, settings,imageAsset,
+    blog, video, user, page, settings,imageAsset,documentUpload,
  // slices
  hero, textBlock, imageGallery, ctaBanner, featureList,
  testimonial, videoEmbed, authorBlock, blogList, newsletterSignup

@@ -3,12 +3,21 @@ export default {
   title: 'Page',
   type: 'document',
   fields: [
-    { name: 'title', title: 'Page Title', type: 'string' },
+    {
+      name: 'title',
+      title: 'Page Title',
+      type: 'string',
+      validation: Rule => Rule.required()
+    },
     {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'title', maxLength: 96 },
+      options: {
+        source: 'title',
+        maxLength: 96
+      },
+      validation: Rule => Rule.required()
     },
     {
       name: 'content',
@@ -25,9 +34,26 @@ export default {
         { type: 'videoEmbed' },
         { type: 'authorBlock' },
         { type: 'blogList' },
-        { type: 'newsletterSignup' }
-      ],
+        { type: 'newsletterSignup' } // ✅ added here
+      ]
     },
-    { name: 'seoDescription', title: 'SEO Description', type: 'text' },
+    {
+      name: 'seoDescription',
+      title: 'SEO Description',
+      type: 'text',
+      validation: Rule => Rule.max(160).warning('SEO descriptions should be under 160 characters.')
+    }
   ],
+  preview: {
+    select: {
+      title: 'title',
+      content: 'content'
+    },
+    prepare({ title, content }) {
+      return {
+        title,
+        subtitle: `${content?.length || 0} section(s)`
+      }
+    }
+  }
 }
